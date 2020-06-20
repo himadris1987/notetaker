@@ -1,9 +1,29 @@
+var express = require("express");
+var path = require ("path");
+
+
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
 
+
+var app =express();
+var PORT=3000;
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+app.get("/", function(req,res){
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+app.get("/notes", function(req,res){
+    res.sendFile(path.join(_dirname, "notes.html"));
+});
+app.listen(PORT,function(){
+    console.log("App listening on PORT:" + PORT);
+});
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
