@@ -10,7 +10,10 @@ const $noteList = $(".list-container .list-group");
 
 
 var app =express();
-var PORT=3000;
+var PORT = process.env.PORT || 3000;
+   app.listen(PORT, function() {app.get("/", function(req, res) {
+    res.json(path.join(__dirname, "index.html"));
+  });
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
